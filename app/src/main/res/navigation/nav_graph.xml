@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_menu">
+
+    <fragment
+        android:id="@+id/navigation_menu"
+        android:name="com.example.smart_hog.MenuFragment"
+        android:label="Remote Control"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.smart_hog.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.example.smart_hog.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/navigation_privacy_security"
+        android:name="com.example.smart_hog.PrivacySecurityFragment"
+        android:label="Privacy &amp; Security"
+        tools:layout="@layout/fragment_privacy_security" />
+
+    <fragment
+        android:id="@+id/navigation_language_region"
+        android:name="com.example.smart_hog.LanguageRegionFragment"
+        android:label="Language &amp; Region"
+        tools:layout="@layout/fragment_language_region" />
+
+</navigation>

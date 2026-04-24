@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Smart_Hog" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_orange</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/neon_orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/login_bg_peach</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#000000</item>
+    </style>
+
+    <!-- FIXED: Added missing Dashboard theme to prevent crash -->
+    <style name="Theme.Smart_Hog.Dashboard" parent="Theme.Smart_Hog">
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#000000</item>
+        <item name="android:calendarViewStyle">@style/CustomCalendarView</item>
+    </style>
+
+    <style name="CustomCalendarView" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">#000000</item>
+        <item name="android:unfocusedMonthDateColor">#000000</item>
+        <item name="android:selectedWeekBackgroundColor">@color/neon_orange</item>
+        <item name="android:weekSeparatorLineColor">#000000</item>
+    </style>
+
+    <!-- FLOATING & ANGAT INDICATOR STYLE -->
+    <style name="App.CustomIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+        <item name="android:width">60dp</item>
+        <item name="android:height">60dp</item>
+    </style>
+
+    <style name="CustomDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="CircleImageView" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedImageView" parent="">
+        <item name="cornerSize">20dp</item>
+    </style>
+</resources>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/db_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Header: Profile Info and Nav -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_person_white"
+                    app:shapeAppearanceOverlay="@style/CircleImageView"
+                    android:padding="2dp"
+                    app:strokeColor="@color/neon_orange"
+                    app:strokeWidth="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Farmer"
+                        android:textSize="12sp"
+                        android:textColor="@color/db_text_secondary"/>
+
+                    <TextView
+                        android:id="@+id/tv_username_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Silas_SmartHog"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/db_text_primary"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_profile_nav"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:tint="@color/black"/>
+
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+                <!-- Center: Circle Button -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_feed_circle"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="90dp"
+                        app:cardElevation="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:rippleColor="@color/light_orange_fade"
+                        app:cardBackgroundColor="@color/neon_orange">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_feed_status"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@android:drawable/ic_lock_power_off"
+                                app:tint="@color/white"/>
+
+                            <TextView
+                                android:id="@+id/tv_feed_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FEED NOW"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp"/>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
+
+                <!-- Below: Schedule Fill-ups -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Feeding Schedule Setup"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/db_text_primary"
+                            android:layout_marginBottom="16dp"/>
+
+                        <!-- Batch Selection -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            android:hint="Select Batch">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/auto_batch_selector"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:padding="16dp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Date & Time Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="16dp"
+                            android:weightSum="2">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_select_date"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="4dp"
+                                android:text="Set Date"
+                                android:textColor="@color/db_text_primary"
+                                app:strokeColor="@color/neon_orange"
+                                app:cornerRadius="12dp"
+                                app:icon="@android:drawable/ic_menu_my_calendar"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_select_time"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginStart="4dp"
+                                android:text="Set Time"
+                                android:textColor="@color/db_text_primary"
+                                app:strokeColor="@color/neon_orange"
+                                app:cornerRadius="12dp"
+                                app:icon="@android:drawable/ic_menu_recent_history"/>
+                        </LinearLayout>
+
+                        <!-- Time Presets -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:weightSum="3">
+
+                            <Button android:id="@+id/btn_preset_6am" style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                                android:text="6:00 AM" android:textSize="11sp" android:textColor="@color/neon_orange"/>
+
+                            <Button android:id="@+id/btn_preset_11am" style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                                android:text="11:00 AM" android:textSize="11sp" android:textColor="@color/neon_orange"/>
+
+                            <Button android:id="@+id/btn_preset_4pm" style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                                android:text="4:00 PM" android:textSize="11sp" android:textColor="@color/neon_orange"/>
+                        </LinearLayout>
+
+                        <!-- Feed Amount -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_preset_3kg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:text="3 KG"
+                                android:backgroundTint="@color/neon_orange"
+                                app:cornerRadius="12dp"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                app:boxCornerRadiusBottomEnd="12dp"
+                                app:boxCornerRadiusBottomStart="12dp"
+                                app:boxCornerRadiusTopEnd="12dp"
+                                app:boxCornerRadiusTopStart="12dp"
+                                android:hint="Amount (KG)">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/et_custom_feed"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for Night mode. -->
+    <style name="Theme.Smart_Hog" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark_orange</item>
+        <item name="colorPrimaryVariant">@color/dark_orange</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/neon_orange</item>
+        <item name="colorSecondaryVariant">@color/neon_orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <!-- Dashboard Theme for Night mode (Neon Orange Theme) -->
+    <style name="Theme.Smart_Hog.Dashboard" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/neon_orange</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Mananatiling white background o pwedeng dark depende sa preference, pero ibabase muna natin sa Dashboard colors mo -->
+        <item name="android:statusBarColor">@color/db_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/db_background</item>
+    </style>
+</resources>

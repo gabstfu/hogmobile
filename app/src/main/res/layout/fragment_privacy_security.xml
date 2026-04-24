@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_bg_peach">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:alpha="0.30" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Professional Header with Date/Time -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:paddingHorizontal="16dp">
+            
+            <ImageButton
+                android:id="@+id/btn_back_privacy"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                app:tint="@color/black" />
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy &amp; Security"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_header_datetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oct 24, 2023 | 08:30 AM"
+                    android:textColor="@color/neon_orange"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- User Information Edit Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PRIVACY SETTINGS" 
+                            android:textColor="@color/neon_orange" 
+                            android:textSize="12sp" 
+                            android:textStyle="bold" 
+                            android:layout_marginBottom="16dp"/>
+                        
+                        <EditText 
+                            android:id="@+id/edit_username" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Username" 
+                            android:textColor="@color/black" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="12dp"
+                            android:textSize="14sp"/>
+                            
+                        <EditText 
+                            android:id="@+id/edit_fullname" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Full Name" 
+                            android:textColor="@color/black" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="12dp"
+                            android:textSize="14sp"/>
+                            
+                        <EditText 
+                            android:id="@+id/edit_email" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Email Address" 
+                            android:textColor="@color/black" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="12dp"
+                            android:textSize="14sp"/>
+                            
+                        <EditText 
+                            android:id="@+id/edit_address" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Address" 
+                            android:textColor="@color/black" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="12dp"
+                            android:textSize="14sp"/>
+                        
+                        <TextView 
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content" 
+                            android:text="Contact Number Country" 
+                            android:textSize="11sp" 
+                            android:layout_marginBottom="4dp"/>
+                            
+                        <Spinner 
+                            android:id="@+id/spinner_country" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:background="@drawable/edit_text_background" 
+                            android:layout_marginBottom="12dp"/>
+                            
+                        <EditText 
+                            android:id="@+id/edit_contact" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Phone Number" 
+                            android:inputType="phone" 
+                            android:textColor="@color/black" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Security Settings Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SECURITY SETTINGS" 
+                            android:textColor="@color/neon_orange" 
+                            android:textSize="12sp" 
+                            android:textStyle="bold" 
+                            android:layout_marginBottom="16dp"/>
+                        
+                        <EditText 
+                            android:id="@+id/edit_new_password" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="New Password" 
+                            android:inputType="textPassword" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="12dp"
+                            android:textSize="14sp"/>
+                            
+                        <EditText 
+                            android:id="@+id/edit_confirm_password" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="50dp" 
+                            android:hint="Confirm Password" 
+                            android:inputType="textPassword" 
+                            android:background="@drawable/edit_text_background" 
+                            android:paddingHorizontal="12dp" 
+                            android:layout_marginBottom="24dp"
+                            android:textSize="14sp"/>
+                        
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_delete_account"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:text="Delete Account"
+                            android:textColor="@color/alert_red"
+                            app:strokeColor="@color/alert_red"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            app:cornerRadius="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save_privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="SAVE CHANGES"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/neon_orange"
+                    app:cornerRadius="16dp"
+                    android:elevation="8dp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</FrameLayout>

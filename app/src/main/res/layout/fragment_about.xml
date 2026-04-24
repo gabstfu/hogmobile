@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_bg_peach">
+
+    <!-- Background Image with alpha -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:alpha="0.30" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Bar -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingHorizontal="16dp">
+            <ImageButton
+                android:id="@+id/btn_back_about"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                app:tint="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="About SMART-HOG"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- About Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SYSTEM DESCRIPTION"
+                            android:textColor="@color/neon_orange"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SMART-HOG is a smart farming system designed to automate the feeding process of pigs using a time-based scheduling system. It also provides real-time monitoring to help farmers ensure proper feeding, improve efficiency, and reduce manual labor.\n\nThis system aims to:\n• Automate pig feeding based on scheduled time\n• Reduce feed wastage\n• Monitor feeding activity\n• Improve farm productivity and animal care\n\nDeveloped by:\nRICKYAi Team\n\nVersion: 1.0"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Terms & Conditions Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TERMS &amp; CONDITIONS"
+                            android:textColor="@color/neon_orange"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1. Acceptance of Terms\nBy using the SMART-HOG system, you agree to follow these terms and conditions. If you do not agree, please do not use the system.\n\n2. System Usage\nSMART-HOG is designed for piggery feeding automation and monitoring purposes only. Users are responsible for proper setup and maintenance of the system.\n\n3. User Responsibility\n• The user must ensure correct feeding schedules are set.\n• The user is responsible for monitoring the system regularly.\n• Any misuse of the system is the user's responsibility.\n\n4. Data and Accuracy\nSMART-HOG aims to provide accurate monitoring data, but it does not guarantee 100% accuracy at all times due to possible technical issues.\n\n5. System Limitations\n• The system depends on power and device functionality.\n• Failures may occur due to hardware or connectivity issues.\n• Manual checking is still recommended.\n\n6. Liability\nThe developers are not liable for:\n• Loss of livestock\n• Feeding errors due to wrong configuration\n• System malfunction or downtime\n\n7. Updates and Changes\nThe system may be updated or modified without prior notice to improve performance and features.\n\n8. Termination of Use\nUsers may stop using the system at any time. Misuse may result in restricted access."
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Uses Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="USES OF SMART-HOG"
+                            android:textColor="@color/neon_orange"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="• Automated Feeding – Feeds pigs based on set schedule\n• Monitoring – Tracks feeding activity and system status\n• Efficiency – Reduces manual work for farmers\n• Cost Saving – Minimizes feed waste\n• Better Animal Care – Ensures consistent feeding routine"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</FrameLayout>

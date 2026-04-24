@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/db_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="100dp">
+
+        <ImageButton
+            android:id="@+id/btn_back_feed"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@color/db_text_primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/feed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Feeding"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/db_text_primary"
+            app:layout_constraintStart_toEndOf="@id/btn_back_feed"
+            app:layout_constraintTop_toTopOf="@id/btn_back_feed"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back_feed" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_icon_feed"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/profile_gradient_bg"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person_white"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            android:elevation="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_back_feed"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back_feed" />
+
+        <!-- Header Actions -->
+        <LinearLayout
+            android:id="@+id/iot_actions_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_back_feed">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="#E8F5E9"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp">
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView android:text="IoT Status" android:textColor="@color/db_dark_green" android:textStyle="bold" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:text="Online" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/db_dark_green" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:text="Last synced: 2m ago" android:textSize="10sp" android:textColor="@color/db_text_secondary" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_new_schedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+                <LinearLayout
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_db_add_circle" app:tint="@color/db_dark_green"/>
+                    <TextView android:layout_marginTop="4dp" android:text="New Schedule" android:textColor="@color/db_dark_green" android:textStyle="bold" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- ACTIVE SCHEDULES -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/starter_batch_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/iot_actions_layout">
+            <LinearLayout
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <ImageView android:id="@+id/batch_icon" android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_db_restaurant" android:background="@drawable/button_background_green" android:padding="8dp" app:tint="@color/white"/>
+                    <LinearLayout android:layout_toEndOf="@id/batch_icon" android:layout_marginStart="12dp" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <TextView android:text="Starter" android:textStyle="bold" android:textColor="@color/db_text_primary" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="Age: 14 Days" android:textSize="12sp" android:textColor="@color/db_text_secondary" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SELLING SCHEDULE -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/db_dark_green"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/starter_batch_card">
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Selling Schedule"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/db_text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <CalendarView
+                    android:id="@+id/sellCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.Smart_Hog.Dashboard"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

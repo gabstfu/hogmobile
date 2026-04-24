@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Dialog Header -->
+        <TextView
+            android:id="@+id/tv_history_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight History"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_history_pig_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pig #PG-1234"
+            android:textColor="#FF8A65"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- THE TABLE -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#F8F9FA">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+
+                <!-- Table Header Row -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF8A65"
+                    android:padding="14dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DATE"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingStart="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WEIGHT (KG)"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:gravity="end"
+                        android:paddingEnd="12dp"/>
+                </TableRow>
+
+                <!-- Row 1 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView android:text="Jan 10, 2024" android:textColor="#495057" android:textSize="14sp" android:paddingStart="12dp"/>
+                    <TextView android:text="65.0" android:textColor="#212529" android:textSize="14sp" android:textStyle="bold" android:gravity="end" android:paddingEnd="12dp"/>
+                </TableRow>
+
+                <View android:layout_height="1dp" android:background="#E9ECEF" android:layout_marginHorizontal="12dp"/>
+
+                <!-- Row 2 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView android:text="Feb 05, 2024" android:textColor="#495057" android:textSize="14sp" android:paddingStart="12dp"/>
+                    <TextView android:text="72.4" android:textColor="#212529" android:textSize="14sp" android:textStyle="bold" android:gravity="end" android:paddingEnd="12dp"/>
+                </TableRow>
+
+                <View android:layout_height="1dp" android:background="#E9ECEF" android:layout_marginHorizontal="12dp"/>
+
+                <!-- Row 3 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView android:text="Mar 10, 2024" android:textColor="#495057" android:textSize="14sp" android:paddingStart="12dp"/>
+                    <TextView android:text="80.1" android:textColor="#212529" android:textSize="14sp" android:textStyle="bold" android:gravity="end" android:paddingEnd="12dp"/>
+                </TableRow>
+
+                <View android:layout_height="1dp" android:background="#E9ECEF" android:layout_marginHorizontal="12dp"/>
+
+                <!-- Row 4 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView android:text="Apr 15, 2024" android:textColor="#495057" android:textSize="14sp" android:paddingStart="12dp"/>
+                    <TextView android:text="85.2" android:textColor="#212529" android:textSize="14sp" android:textStyle="bold" android:gravity="end" android:paddingEnd="12dp"/>
+                </TableRow>
+            </TableLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Summary Info (Optional extra content) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#FFF3E0"
+            android:padding="12dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Gain:"
+                android:textColor="#E65100"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="+20.2 kg since Jan"
+                android:textColor="#E65100"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_close_history"
+            android:layout_width="120dp"
+            android:layout_height="54dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="24dp"
+            android:text="GOT IT"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            app:backgroundTint="#FF8A65"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

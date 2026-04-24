@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_bg_peach">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:alpha="0.30" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Professional Header with Date/Time -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp">
+            <ImageButton
+                android:id="@+id/btn_back_language"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                app:tint="@color/black" />
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language &amp; Region"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_header_datetime_lang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oct 24, 2023 | 08:30 AM"
+                    android:textColor="@color/neon_orange"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Language Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LANGUAGE" 
+                            android:textColor="@color/neon_orange" 
+                            android:textSize="12sp" 
+                            android:textStyle="bold" 
+                            android:layout_marginBottom="12dp"/>
+                        <Spinner 
+                            android:id="@+id/spinner_language" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="48dp" 
+                            android:background="@drawable/edit_text_background"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Region & Time Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#CCFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="REGION &amp; TIME" 
+                            android:textColor="@color/neon_orange" 
+                            android:textSize="12sp" 
+                            android:textStyle="bold" 
+                            android:layout_marginBottom="12dp"/>
+                        
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Country / Region" 
+                            android:textSize="11sp" 
+                            android:layout_marginBottom="4dp"/>
+                        <Spinner 
+                            android:id="@+id/spinner_region" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="48dp" 
+                            android:background="@drawable/edit_text_background" 
+                            android:layout_marginBottom="16dp"/>
+
+                        <TextView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time Zone" 
+                            android:textSize="11sp" 
+                            android:layout_marginBottom="4dp"/>
+                        <TextView 
+                            android:id="@+id/tv_timezone" 
+                            android:layout_width="match_parent" 
+                            android:layout_height="48dp" 
+                            android:text="PHT (UTC+08:00)" 
+                            android:gravity="center_vertical" 
+                            android:paddingHorizontal="12dp" 
+                            android:background="@drawable/edit_text_background" 
+                            android:layout_marginBottom="16dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_set_datetime"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:text="Set Date &amp; Time"
+                            app:backgroundTint="@color/db_text_secondary"
+                            app:cornerRadius="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="APPLY CHANGES"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/neon_orange"
+                    app:cornerRadius="16dp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</FrameLayout>

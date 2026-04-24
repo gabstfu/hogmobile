@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Pinili (Clicked): Dark Orange with White Border -->
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/white" /> <!-- White Border Effect -->
+                    <size android:width="56dp" android:height="56dp" />
+                </shape>
+            </item>
+            <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="#E65100" /> <!-- Dark Orange -->
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <!-- Hindi Pinili (Unclicked): Light Orange -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFE0B2" /> <!-- Light Orange (Peach) -->
+            <size android:width="48dp" android:height="48dp" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- THEME COLORS (DARK GREEN TRANSITION) -->
+    <color name="neon_orange">#2E7D32</color> <!-- Forest Green -->
+    <color name="dark_orange">#1B5E20</color> <!-- Darker Green -->
+    <color name="vibrant_yellow">#C0CA33</color> <!-- Lime/Yellow -->
+    <color name="alert_red">#D32F2F</color>
+    
+    <!-- Aliases for consistency -->
+    <color name="dark_green">#1B5E20</color>
+    <color name="vibrant_green">#2E7D32</color>
+    
+    <!-- Navigation Colors -->
+    <color name="nav_indicator_orange">#2E7D32</color>
+    <color name="light_orange_fade">#332E7D32</color>
+
+    <!-- GRADIENT COLORS -->
+    <color name="gradient_start">#E8F5E9</color> <!-- Light Green Start -->
+    <color name="gradient_end">#FFFFFF</color>
+
+    <!-- NEW THEME COLORS (LOGIN PAGE) -->
+    <color name="login_bg_peach">#E8F5E9</color> <!-- Light Mint Background -->
+    <color name="light_peach_orange">#F1F8E9</color>
+    <color name="login_button_orange">#1B5E20</color>
+    <color name="login_text_dark">#1B5E20</color>
+    <color name="login_accent_orange">#2E7D32</color>
+    <color name="login_hint_color">#1B5E20</color>
+
+    <!-- Dashboard Colors -->
+    <color name="db_background">#E8F5E9</color>
+    <color name="db_text_primary">#1B5E20</color>
+    <color name="db_text_secondary">#2E7D32</color>
+    <color name="db_dark_green">#1B5E20</color>
+    <color name="db_card_background">#FFFFFF</color>
+    <color name="db_nav_bg">#1B5E20</color>
+    <color name="db_nav_item_selected">#FFFFFF</color>
+    <color name="db_icon_tint">#1B5E20</color>
+    
+    <!-- Legacy Support -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="light_green_card">#E8F5E9</color>
+    <color name="text_green">#1B5E20</color>
+
+    <color name="db_stat_positive_bg">#C8E6C9</color>
+    <color name="db_stat_positive_text">#1B5E20</color>
+    <color name="db_urgent_orange">#2E7D32</color>
+    <color name="db_urgent_bg">#F1F8E9</color>
+    <color name="db_chart_bar">#4CAF50</color>
+    <color name="db_chart_line">#2E7D32</color>
+</resources>

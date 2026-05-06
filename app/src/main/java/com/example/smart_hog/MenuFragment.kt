@@ -29,6 +29,8 @@ class MenuFragment : Fragment() {
     private lateinit var btnFeedCircle: MaterialCardView
     private lateinit var tvFeedStatus: TextView
     private lateinit var ivFeedStatus: ImageView
+    private lateinit var cardAlerts: MaterialCardView
+    private lateinit var tvAlertMessage: TextView
     private lateinit var profileManager: ProfileManager
 
     override fun onCreateView(
@@ -59,6 +61,10 @@ class MenuFragment : Fragment() {
         btnFeedCircle = view.findViewById(R.id.btn_feed_circle)
         tvFeedStatus = view.findViewById(R.id.tv_feed_status)
         ivFeedStatus = view.findViewById(R.id.iv_feed_status)
+        
+        // Initialize Global Notification Bar from Activity
+        cardAlerts = requireActivity().findViewById(R.id.card_alerts)
+        tvAlertMessage = requireActivity().findViewById(R.id.tv_alert_message)
 
         // Initialize Profile Manager
         val userAvatar = view.findViewById<ImageView>(R.id.user_avatar)
@@ -80,7 +86,46 @@ class MenuFragment : Fragment() {
             autoBatchSelector.setAdapter(adapter)
         }
 
+        // Observe pig list for alerts
+        monitorViewModel.pigList.observe(viewLifecycleOwner) { pigs ->
+            checkPigsForAlerts(pigs)
+        }
+
         monitorViewModel.fetchApiData()
+    }
+
+    private fun checkPigsForAlerts(pigs: List<Pig>?) {
+        if (pigs.isNullOrEmpty()) {
+            cardAlerts.visibility = View.GONE
+            return
+        }
+
+        val weightThreshold = 100.0 // kg
+        val ageThreshold = 150 // days
+        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+        val heavyPigs = pigs.count { it.weight >= weightThreshold }
+        val oldPigs = pigs.count { it.ageDays >= ageThreshold }
+        val vaccinePigs = pigs.count { it.nextVaccinationDate != null && it.nextVaccinationDate!! <= today }
+
+        val alerts = mutableListOf<String>()
+        if (heavyPigs > 0) alerts.add("$heavyPigs pigs reached target weight")
+        if (oldPigs > 0) alerts.add("$oldPigs pigs ready for market (age)")
+        if (vaccinePigs > 0) alerts.add("$vaccinePigs pigs need vaccination")
+
+        if (alerts.isNotEmpty()) {
+            tvAlertMessage.text = alerts.joinToString(" | ")
+            cardAlerts.visibility = View.VISIBLE
+            
+            // Navigate to monitor fragment when alert is clicked
+            cardAlerts.setOnClickListener {
+                // If using Navigation Component
+                // findNavController().navigate(R.id.navigation_monitor)
+                Toast.makeText(requireContext(), "Checking Pig Details...", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            cardAlerts.visibility = View.GONE
+        }
     }
 
     private fun loadHeaderData(tvUsername: TextView) {
@@ -163,22 +208,71 @@ class MenuFragment : Fragment() {
     }
 
     private fun handleFeedingAction() {
-        val batch = autoBatchSelector.text.toString()
+        val batchName = autoBatchSelector.text.toString()
         val dateText = btnSelectDate.text.toString()
         val timeText = btnSelectTime.text.toString()
-        val amount = etCustomFeed.text.toString()
+        val amountStr = etCustomFeed.text.toString()
 
-        if (batch.isEmpty() || batch == "Loading batches..." || dateText == "Set Date" || timeText == "Set Time" || amount.isEmpty()) {
+        if (batchName.isEmpty() || batchName == "Loading batches..." || dateText == "Set Date" || timeText == "Set Time" || amountStr.isEmpty()) {
             Toast.makeText(requireContext(), "Please complete the schedule first", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Simulate Success UI State
-        tvFeedStatus.text = "FEEDING\nSCHEDULED"
-        btnFeedCircle.setCardBackgroundColor(resources.getColor(R.color.dark_orange))
-        ivFeedStatus.setImageResource(android.R.drawable.ic_menu_today)
+        // Find the batch code from the selected name
+        val selectedBatch = monitorViewModel.apiBatches.value?.find { it.batchName == batchName }
+        val batchCode = selectedBatch?.batchCode ?: batchName
 
-        val confirmationMessage = "Feeding Scheduled Successfully!\nBatch: $batch\nTime: $dateText $timeText\nAmount: $amount KG"
-        Toast.makeText(requireContext(), confirmationMessage, Toast.LENGTH_LONG).show()
+        val amount = amountStr.toDoubleOrNull() ?: 0.0
+        
+        // Format ISO Date Time: YYYY-MM-DDTHH:mm:ss
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
+        val isoDateTime = isoFormat.format(calendar.time)
+        val startDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
+
+        val schedule = FeedingSchedule(
+            batchCode = batchCode,
+            feedQuantity = amount,
+            feedTime = isoDateTime,
+            datetime = isoDateTime,
+            startDate = startDate,
+            feedType = "Starter",
+            growthCode = "GC001",
+            deviceCode = "DEV001",
+            penCode = "PEN001",
+            isActive = true
+        )
+
+        val loading = LoadingUtils.showLoading(requireContext())
+        
+        RetrofitClient.instance.createSchedule(schedule).enqueue(object : retrofit2.Callback<Map<String, Any>> {
+            override fun onResponse(call: retrofit2.Call<Map<String, Any>>, response: retrofit2.Response<Map<String, Any>>) {
+                loading.dismiss()
+                if (response.isSuccessful) {
+                    // Success UI State
+                    tvFeedStatus.text = "FEEDING\nSCHEDULED"
+                    btnFeedCircle.setCardBackgroundColor(resources.getColor(R.color.dark_orange))
+                    ivFeedStatus.setImageResource(android.R.drawable.ic_menu_today)
+
+                    val confirmationMessage = "Feeding Scheduled Successfully!\nBatch: $batchName\nTime: $dateText $timeText\nAmount: $amount KG"
+                    Toast.makeText(requireContext(), confirmationMessage, Toast.LENGTH_LONG).show()
+                    
+                    // Reset fields after a delay
+                    btnFeedCircle.postDelayed({
+                        tvFeedStatus.text = "FEED NOW"
+                        btnFeedCircle.setCardBackgroundColor(resources.getColor(R.color.neon_orange))
+                        ivFeedStatus.setImageResource(android.R.drawable.ic_lock_power_off)
+                    }, 5000)
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Unknown error"
+                    android.util.Log.e("MENU_FEED", "Failed: $errorMsg")
+                    Toast.makeText(requireContext(), "Failed to schedule: $errorMsg", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<Map<String, Any>>, t: Throwable) {
+                loading.dismiss()
+                Toast.makeText(requireContext(), "Network Error: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

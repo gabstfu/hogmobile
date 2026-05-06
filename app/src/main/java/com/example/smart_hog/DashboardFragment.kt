@@ -135,21 +135,60 @@ class DashboardFragment : Fragment() {
 
     private fun handleApplyCommand() {
         val isPowerOn = switchPower.isChecked
-        val batch = autoBatchSelector.text.toString()
+        val batchName = autoBatchSelector.text.toString()
         val dateText = btnSelectDate.text.toString()
         val timeText = btnSelectTime.text.toString()
-        val amount = etCustomFeed.text.toString()
+        val amountStr = etCustomFeed.text.toString()
 
-        if (batch.isEmpty() || batch == "Loading batches..." || dateText == "Set Date" || timeText == "Set Time" || amount.isEmpty()) {
+        if (batchName.isEmpty() || batchName == "Loading batches..." || dateText == "Set Date" || timeText == "Set Time" || amountStr.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill in all remote parameters", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val powerStatus = if (isPowerOn) "ON" else "OFF"
-        val confirmationMessage = "Remote Command Sent!\nPower: $powerStatus\nBatch: $batch\nSchedule: $dateText $timeText\nAmount: $amount KG"
+        // Find the batch code from the selected name
+        val selectedBatch = monitorViewModel.apiBatches.value?.find { it.batchName == batchName }
+        val batchCode = selectedBatch?.batchCode ?: batchName
+
+        val amount = amountStr.toDoubleOrNull() ?: 0.0
         
-        Toast.makeText(requireContext(), confirmationMessage, Toast.LENGTH_LONG).show()
+        // Format ISO Date Time: YYYY-MM-DDTHH:mm:ss
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
+        val isoDateTime = isoFormat.format(calendar.time)
+        val startDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
+
+        val schedule = FeedingSchedule(
+            batchCode = batchCode,
+            feedQuantity = amount,
+            feedTime = isoDateTime,
+            datetime = isoDateTime,
+            startDate = startDate,
+            feedType = "Starter",
+            growthCode = "GC001",
+            deviceCode = "DEV001",
+            penCode = "PEN001",
+            isActive = isPowerOn
+        )
+
+        val loading = LoadingUtils.showLoading(requireContext())
         
-        // In a real scenario, you'd send this to your IoT server via Retrofit
+        RetrofitClient.instance.createSchedule(schedule).enqueue(object : retrofit2.Callback<Map<String, Any>> {
+            override fun onResponse(call: retrofit2.Call<Map<String, Any>>, response: retrofit2.Response<Map<String, Any>>) {
+                loading.dismiss()
+                if (response.isSuccessful) {
+                    val powerStatus = if (isPowerOn) "ON" else "OFF"
+                    val confirmationMessage = "Remote Command Sent!\nPower: $powerStatus\nBatch: $batchName\nSchedule: $dateText $timeText\nAmount: $amount KG"
+                    Toast.makeText(requireContext(), confirmationMessage, Toast.LENGTH_LONG).show()
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Unknown error"
+                    android.util.Log.e("DASHBOARD_FEED", "Failed: $errorMsg")
+                    Toast.makeText(requireContext(), "Failed to send command: $errorMsg", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<Map<String, Any>>, t: Throwable) {
+                loading.dismiss()
+                Toast.makeText(requireContext(), "Network Error: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

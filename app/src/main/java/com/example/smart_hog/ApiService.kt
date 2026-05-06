@@ -103,13 +103,8 @@ data class DataminingAllResponse(
 
 interface ApiService {
 
-    @FormUrlEncoded
     @POST("auth/login/")
-    fun login(
-        @Field("username") username: String,
-        @Field("email") email: String,
-        @Field("password") password: String
-    ): Call<Map<String, Any>>
+    fun login(@Body request: LoginRequest): Call<Map<String, Any>>
 
     @GET("feeding/all/")
     fun getSchedules(): Call<List<FeedingSchedule>>

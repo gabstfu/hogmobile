@@ -31,8 +31,9 @@ class LoginActivity : AppCompatActivity() {
             if (input.isNotEmpty() && password.isNotEmpty()) {
                 val loading = LoadingUtils.showLoading(this)
 
-                // Sending as Form Data fields to fix the 400 error
-                RetrofitClient.instance.login(input, input, password)
+                // Use unified Retrofit instance with JSON body to ensure x-api-key is included
+                val loginRequest = LoginRequest(username = input, email = input, password = password)
+                RetrofitClient.authInstance.login(loginRequest)
                     .enqueue(object : retrofit2.Callback<Map<String, Any>> {
                         override fun onResponse(
                             call: retrofit2.Call<Map<String, Any>>,
